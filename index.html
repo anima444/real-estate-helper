@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Price Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"], input[type="datetime-local"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Real Estate Price Checker</h1>
+    <input type="text" id="location" placeholder="Enter Location" />
+    <input type="datetime-local" id="datetime" />
+    <button onclick="fetchPrices()">Check Prices</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function fetchPrices() {
+        const location = document.getElementById("location").value;
+        const datetime = document.getElementById("datetime").value;
+        const resultElement = document.getElementById("result");
+
+        if (!location || !datetime) {
+            resultElement.innerHTML = "Please enter both location and date/time.";
+            return;
+        }
+
+        // Placeholder function for fetching prices (replace with API call if available)
+        const getMockRealEstatePrices = (location) => {
+            // Static data for demonstration
+            return {
+                "New York": "$500,000 - $3,000,000",
+                "San Francisco": "$700,000 - $5,000,000",
+                "Austin": "$300,000 - $1,200,000",
+            }[location] || "Data not available for this location";
+        };
+
+        // Simulate fetching real estate prices for the entered location and time
+        const prices = getMockRealEstatePrices(location);
+
+        // Display the results
+        resultElement.innerHTML = `
+            <h3>Real Estate Prices for ${location}</h3>
+            <p>Time: ${new Date(datetime).toLocaleString()}</p>
+            <p>Prices: ${prices}</p>
+        `;
+    }
+</script>
+
+</body>
+</html>
